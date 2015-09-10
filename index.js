@@ -1,5 +1,4 @@
 var express = require('express')
-var app = express()
 var fetch = require('node-fetch')
 var cheerio = require('cheerio')
 var _ = require('underscore')
@@ -91,6 +90,10 @@ function fetchAll () {
       merge('convrge', [room])
     })
 }
+
+var app = express()
+
+app.set('port', (process.env.PORT || 5000))
 
 app.set('view engine', 'ejs')
 
