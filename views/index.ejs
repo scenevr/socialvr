@@ -1,0 +1,54 @@
+<style>
+  @import url(/theme.css);
+</style>
+
+<header>
+  <h1>
+    <span class="logo">s</span>
+    Social VR Activity Monitor
+  </h1>
+</header>
+
+<section>
+  <h3>
+    Showing active users for these social virtual reality apps:
+  </h3>
+
+  <ul class="indexing">
+    <li>
+      <a href="http://www.vrchat.net/">VrChat</a>
+    </li>
+    <li>
+      <img src="http://www.janusvr.com/favicon.ico" />
+      <a href="http://janusvr.com/">JanusVR</a>
+    </li>
+    <li>
+      <img src="http://www.convrge.co/img/favicon.ico" />
+      <a href="http://convrge.co/">Convrge</a>
+    </li>
+    <li>
+      <img src="http://altvr.wpengine.netdna-cdn.com/wp-content/themes/altspacevr/assets/img_min/favicon.ico" />
+      <a href="http://altspacevr.com/">AltspaceVR</a>
+    </li>
+    <li class="email-me">
+      (<a href="mailto:bnolan@gmail.com">Email me to add your app</a>)
+    </li>
+  </ul>
+
+  <h3>
+    Active users by room <small>(updated every 30 seconds)</small>
+  </h3>
+
+  <% rooms.forEach(function (room) { %>
+
+  <div class='room <%= room.occupants > 0 ? 'active' : 'inactive' %>'>
+    <span class='occupants'><%= room.occupants %></span>
+    <h3><span class='app'><%= room.app %></span> <%= room.name %></h3>
+  </div>
+
+  <% }) %>
+</section>
+
+<footer>
+  <h5>Built by Ben Nolan of <a href="http://docs.scenevr.com/">SceneVR</a>.</h5>
+</footer>

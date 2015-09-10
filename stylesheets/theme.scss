@@ -1,0 +1,147 @@
+
+html,body{
+  height: 100%;
+}
+
+body{
+  font-family: 'arial rounded mt bold', sans-serif;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+}
+
+$color: #f0a;
+$width: 640px;
+
+h3{
+  small{
+    color: #777;
+  }
+}
+
+header{
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background: linear-gradient(darken($color, 30%), darken($color, 40%));
+  color: white;
+  padding: 140px 0 30px 0;
+  margin: 0;
+
+  $size: 32px;
+
+  h1{
+    .logo{
+      font-weight: normal;
+      border: 2px solid white;
+      box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      background: rgba(0,0,0,0.4);
+      line-height: $size * 0.9;
+      width: $size;
+      height: $size;
+      text-align: center;
+      display: inline-block;
+    }
+
+    max-width: $width;
+    margin: auto;
+  }
+}
+
+section{
+  box-sizing: border-box;
+  max-width: $width;
+  margin: 0px auto -70px auto;
+  min-height: 100%;
+  padding: 240px 0 140px 0;
+}
+
+footer{
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(#ccc, darken(#ccc, 10%));
+  color: white;
+  padding: 30px 0 30px 0;
+  margin: 0;
+
+  $size: 32px;
+
+  h5{
+    max-width: $width;
+    margin: auto;
+    color: #555;
+    text-align: center;
+
+    a{
+      color: inherit;
+    }
+  }
+}
+
+.indexing{
+  margin: 0 0 20px 0;
+  padding: 0;
+  border-top: 1px solid #ccc;
+
+  li{
+    list-style: none;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  img{
+    width: 18px;
+    height: 18px;
+    background: #eee;
+    border-radius: 2px;
+  }
+
+  .email-me{
+    color: #555;
+    font-size: 0.9em;
+    padding-left: 26px;
+
+    a{
+      color: inherit;
+    }
+  }
+}
+.room{
+  $medallion: 48px;
+  min-height: $medallion;
+  margin-bottom: 8px;
+
+  .occupants{
+    border-radius: $medallion * 0.3;
+    height: $medallion;
+    width: $medallion;
+    line-height: $medallion;
+    text-align: center;
+    background: linear-gradient($color, darken($color, 20%));
+    display: inline-block;
+    color: white;
+    font-size: 18px;
+    text-shadow: 1px 1px 1px black;
+    position: absolute;
+  }
+
+  &.inactive .occupants{
+    background: linear-gradient(#ccc, darken(#ccc, 20%));
+  }
+  h3{
+    margin: 0 0 0 60px;
+    line-height: $medallion;
+  }
+
+  .app{
+    font-weight: normal;
+    color: #666;
+  }
+  .app:after{
+    content: ' - ';
+    color: #ccc;
+  }
+}
