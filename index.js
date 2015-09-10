@@ -93,8 +93,6 @@ function fetchAll () {
 
 var app = express()
 
-app.set('port', (process.env.PORT || 5000))
-
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
@@ -120,7 +118,7 @@ setInterval(function () {
 
 fetchAll()
 
-var server = app.listen(3000, function () {
+var server = app.listen((process.env.PORT || 5000), function () {
   var host = server.address().address
   var port = server.address().port
 
