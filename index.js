@@ -96,11 +96,18 @@ var app = express()
 app.set('view engine', 'ejs')
 
 app.get('/', function (req, res) {
+  if (req.hostname === 'socialvr.herokuapp.com') {
+    res.redirect('http://social.scenevr.com')
+    return
+  }
+
   var rooms = roomList.filter(function (r) {
     return r.occupants > 0
   })
 
-  rooms = _.sortBy(rooms, 'occupancy')
+  rooms = _.sortBy(rooms, function (r) {
+    return -parseInt(r.occupants, 10)
+  })
 
   res.render('index', { rooms: rooms })
 })
