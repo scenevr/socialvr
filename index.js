@@ -14,6 +14,22 @@ function fetchAll () {
     }).concat(rooms)
   }
 
+  // high fidelity
+  fetch('https://metaverse.highfidelity.com/api/v1/domains/active.json').then(function (res) {
+    return res.json()
+  }).then(function (response) {
+    var rooms = response.data.domains.map(function (r) {
+      return {
+        occupants: r.online,
+        name: r.name,
+        app: 'highfidelity',
+        url: 'hifi://' + r.name
+      }
+    })
+
+    merge('highfidelity', rooms)
+  })
+
   // janus
   fetch('http://beta.vrsites.com/janus-server/').then(function (res) {
     return res.text()

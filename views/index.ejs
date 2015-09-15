@@ -22,19 +22,23 @@
 
   <ul class="indexing">
     <li>
-      <a href="http://www.vrchat.net/">VrChat</a>
-    </li>
-    <li>
-      <img src="http://www.janusvr.com/favicon.ico" />
-      <a href="http://janusvr.com/">JanusVR</a>
+      <img src="http://altvr.wpengine.netdna-cdn.com/wp-content/themes/altspacevr/assets/img_min/favicon.ico" />
+      <a href="http://altspacevr.com/">AltspaceVR</a>
     </li>
     <li>
       <img src="http://www.convrge.co/img/favicon.ico" />
       <a href="http://convrge.co/">Convrge</a>
     </li>
     <li>
-      <img src="http://altvr.wpengine.netdna-cdn.com/wp-content/themes/altspacevr/assets/img_min/favicon.ico" />
-      <a href="http://altspacevr.com/">AltspaceVR</a>
+      <img src="http://www.highfidelity.com/favicon.ico" />
+      <a href="http://highfidelity.com/">High Fidelity</a>
+    </li>
+    <li>
+      <img src="http://www.janusvr.com/favicon.ico" />
+      <a href="http://janusvr.com/">JanusVR</a>
+    </li>
+    <li style="padding-left: 30px">
+      <a href="http://www.vrchat.net/">VrChat</a>
     </li>
     <li class="email-me">
       (<a href="mailto:bnolan@gmail.com">Email me to add your app</a>)
@@ -49,7 +53,7 @@
 
   <div class='room <%= room.occupants > 0 ? 'active' : 'inactive' %>'>
     <span class='occupants'><%= room.occupants %></span>
-    <h3><span class='app'><%= room.app %></span> <%= room.name %></h3>
+    <h3><span class='app'><%= room.app %></span> <a href="<%= room.url %>"><%= room.name %></a></h3>
   </div>
 
   <% }) %>
