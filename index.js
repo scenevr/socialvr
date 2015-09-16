@@ -4,6 +4,7 @@ var cheerio = require('cheerio')
 var _ = require('underscore')
 var sassMiddleware = require('node-sass-middleware')
 var path = require('path')
+var WebSocketClient = require('websocket').client;
 
 var roomList = []
 
@@ -13,6 +14,35 @@ function fetchAll () {
       return r.app === app
     }).concat(rooms)
   }
+
+  // scenevr
+  var client = new WebSocketClient()
+
+  client.on('connect', function (connection) {
+    setTimeout(function () {
+      connection.close()
+    }, 1000)
+
+    connection.on('message', function (message) {
+      var data = message.utf8Data
+
+      // Fanciest xml parsing you've ever seen.
+      if (data.match(/<spawn/)) {
+        var room = {
+          occupants: data.match(/<player/) ? data.match(/<player/g).length : 0,
+          name: 'Homeroom',
+          app: 'scenevr',
+          url: 'http://www.scenevr.com/'
+        }
+
+        merge('scenevr', [room])
+
+        connection.close()
+      }
+    })
+  })
+
+  client.connect('ws://home.scenevr.hosting/home.xml', 'scenevr')
 
   // high fidelity
   fetch('https://metaverse.highfidelity.com/api/v1/domains/active.json').then(function (res) {
