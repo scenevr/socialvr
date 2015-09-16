@@ -29,7 +29,7 @@ function fetchAll () {
       // Fanciest xml parsing you've ever seen.
       if (data.match(/<spawn/)) {
         var room = {
-          occupants: data.match(/<player/) ? data.match(/<player/g).length : 0,
+          occupants: data.match(/<player/) ? Math.max(0, data.match(/<player/g).length - 1) : 0,
           name: 'Homeroom',
           app: 'scenevr',
           url: 'http://www.scenevr.com/'
