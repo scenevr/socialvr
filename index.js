@@ -32,7 +32,7 @@ function fetchAll () {
           occupants: data.match(/<player/) ? Math.max(0, data.match(/<player/g).length - 1) : 0,
           name: 'Homeroom',
           app: 'scenevr',
-          url: 'http://www.scenevr.com/'
+          url: 'https://client.scenevr.com/'
         }
 
         merge('scenevr', [room])
@@ -42,7 +42,7 @@ function fetchAll () {
     })
   })
 
-  client.connect('ws://home.scenevr.hosting/home.xml', 'scenevr')
+  client.connect('wss://grid.scenevr.com/scenes/41', 'scenevr')
 
   // high fidelity
   fetch('https://metaverse.highfidelity.com/api/v1/domains/active.json').then(function (res) {
@@ -75,26 +75,22 @@ function fetchAll () {
   })
 
   // altspace
-  fetch('https://account.altvr.com/spaces').then(function (res) {
+  fetch('https://account.altvr.com/socializes/everyone').then(function (res) {
     return res.text()
   }).then(function (html) {
     var doc = cheerio.load(html)
     var rooms = []
 
-    doc('.main-content .content-block').each(function (index, el) {
+    doc('.space-header').each(function (index, el) {
       var div = cheerio(el)
-      var id = div.find('.visit-button a').attr('data-altspace-space-id')
 
       var room = {
-        name: div.find('.block-sub-name').text().replace(/^[\n\s\r@]+/, '').replace(/\s\n[0-9\n]+/, ''),
-        occupants: parseInt(div.find('.capacity-part').text(), 10),
-        app: 'altspace',
-        url: 'altspace://account.altvr.com/api/spaces/' + id
+        name: div.text().replace(/\(.+/, ''),
+        occupants: parseInt(div.text().match(/\((.+)\)/, '')[1], 10),
+        app: 'altspace'
       }
 
-      if (id) {
-        rooms.push(room)
-      }
+      rooms.push(room)
     })
 
     merge('altspace', rooms)
